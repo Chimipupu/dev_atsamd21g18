@@ -20,17 +20,20 @@ static void _led_blink()
 
 void setup()
 {
-    Serial.begin(115200);
     pinMode(LED_BUILTIN, OUTPUT);
+    SerialUSB.begin(9600);
+    while(!SerialUSB){
+        ;
+    }
 }
 
 void loop()
 {
-    Serial.println("ATSAMD21G18 F/W Development");
-    Serial.println("PCB: Arduino M0");
-    Serial.println("Clock: 48MHz");
-    Serial.println("ROM: 256KB");
-    Serial.println("RAM: 32KB");
+    SerialUSB.print("ATSAMD21G18 F/W Development\r\n");
+    SerialUSB.print("PCB: Arduino M0\r\n");
+    SerialUSB.print("Clock: 48MHz\r\n");
+    SerialUSB.print("ROM: 256KB\r\n");
+    SerialUSB.print("RAM: 32KBv");
     _led_blink();
     delay(500);
 }
